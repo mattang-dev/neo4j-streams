@@ -23,6 +23,17 @@
             <name>Confluent</name>
             <url>https://packages.confluent.io/maven/</url>
         </repository>
+        <!--
+        <repository>
+            <id>repo.maven.apache.org</id>
+            <name>apache</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>repo1.maven.org</id>
+            <name>central</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository> -->
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -62,7 +73,7 @@
         <profile>
             <id>default</id>
             <dependencies>
-                <dependency>
+                <!-- <dependency>
                     <groupId>com.neo4j</groupId>
                     <artifactId>neo4j-causal-clustering</artifactId>
                     <scope>test</scope>
@@ -72,8 +83,8 @@
                             <artifactId>jackson-databind</artifactId>
                         </exclusion>
                     </exclusions>
-                </dependency>
-                <dependency>
+                </dependency> -->
+                <!-- <dependency>
                     <groupId>com.neo4j</groupId>
                     <artifactId>neo4j-causal-clustering</artifactId>
                     <type>test-jar</type>
@@ -84,7 +95,7 @@
                             <artifactId>jackson-databind</artifactId>
                         </exclusion>
                     </exclusions>
-                </dependency>
+                </dependency> -->
             </dependencies>
             <activation>
                 <property>

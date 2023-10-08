@@ -94,7 +94,7 @@
                 <artifactId>neo4j-random-values</artifactId>
                 <version>${neo4j.version}</version>
             </dependency>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.neo4j</groupId>
                 <artifactId>neo4j-causal-clustering</artifactId>
                 <version>${neo4j.version}</version>
@@ -105,8 +105,8 @@
                         <artifactId>slf4j-nop</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-            <dependency>
+            </dependency> -->
+            <!-- <dependency>
                 <groupId>com.neo4j</groupId>
                 <artifactId>neo4j-causal-clustering</artifactId>
                 <version>${neo4j.version}</version>
@@ -117,7 +117,7 @@
                         <artifactId>slf4j-nop</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
+            </dependency> -->
         </dependencies>
     </dependencyManagement>
 
@@ -127,6 +127,16 @@
             <name>Jitpack</name>
             <url>https://jitpack.io</url>
         </repository>
+        <!-- <repository>
+            <id>repo.maven.apache.org</id>
+            <name>apache</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>repo1.maven.org</id>
+            <name>central</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository> -->
     </repositories>
 
     <dependencies>
