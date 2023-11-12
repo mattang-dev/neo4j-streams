@@ -32,6 +32,7 @@ import org.neo4j.helpers.collection.Iterables
 import org.neo4j.helpers.collection.Iterators
 import org.neo4j.internal.kernel.api.IndexCapability
 import org.neo4j.internal.kernel.api.InternalIndexState
+import org.neo4j.internal.kernel.api.TokenNameLookup
 import org.neo4j.io.ByteUnit
 import org.neo4j.io.fs.FileSystemAbstraction
 import org.neo4j.io.layout.DatabaseLayout
@@ -683,13 +684,13 @@ class KafkaDatabaseRecovery: KafkaEventSinkBase() {
 
     class UpdateCapturingIndexProvider internal constructor(private val actual: IndexProvider, private val initialUpdates: Map<Long?, Collection<IndexEntryUpdate<*>>>) : IndexProvider(actual) {
         private val indexes: MutableMap<Long, UpdateCapturingIndexAccessor> = ConcurrentHashMap()
-        override fun getPopulator(descriptor: StoreIndexDescriptor, samplingConfig: IndexSamplingConfig, bufferFactory: ByteBufferFactory): IndexPopulator {
-            return actual.getPopulator(descriptor, samplingConfig, bufferFactory)
+        override fun getPopulator(descriptor: StoreIndexDescriptor, samplingConfig: IndexSamplingConfig, bufferFactory: ByteBufferFactory, tokenName: TokenNameLookup): IndexPopulator {
+            return actual.getPopulator(descriptor, samplingConfig, bufferFactory, tokenName)
         }
 
         @Throws(IOException::class)
-        override fun getOnlineAccessor(descriptor: StoreIndexDescriptor, samplingConfig: IndexSamplingConfig): IndexAccessor {
-            val actualAccessor = actual.getOnlineAccessor(descriptor, samplingConfig)
+        override fun getOnlineAccessor(descriptor: StoreIndexDescriptor, samplingConfig: IndexSamplingConfig, tokenName: TokenNameLookup): IndexAccessor {
+            val actualAccessor = actual.getOnlineAccessor(descriptor, samplingConfig, tokenName)
             return indexes.computeIfAbsent(descriptor.id) { id: Long? -> UpdateCapturingIndexAccessor(actualAccessor, initialUpdates[id]) }
         }
 
